@@ -1,0 +1,4 @@
+{
+  "PORT" : "6001",
+  "SERVER_URL" : "http://localhost:8001"
+}
