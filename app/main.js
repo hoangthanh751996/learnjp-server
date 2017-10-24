@@ -26,6 +26,15 @@ letter = letter.concat(row8);
 letter = letter.concat(row9);
 letter = letter.concat(row10);
 
+let row11 = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
+let row12 = ["さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね", "の"];
+let row13 = ["ま", "み", "む", "め", "も", "や", "ゆ", "よ"];
+let row14 = ["ら", "り", "る", "ろ", "わ", "を", "ん"];
+let letterHiragana = [];
+letterHiragana = letterHiragana.concat(row11);
+letterHiragana = letterHiragana.concat(row12);
+letterHiragana = letterHiragana.concat(row13);
+letterHiragana = letterHiragana.concat(row14);
 // boostrap app
 let app = express();
 let server = require("http").Server(app);
@@ -45,21 +54,36 @@ module.exports = (config) => {
 	app.post("/api/generate", (req, res) => {
     let numberWords = req.body.number_word;
     let level = req.body.level;
+    let letterCheck = req.body.letter_check;
     let textRes = "";
     let dataRes;
     let i = 0;
     while(1) {
       let numberRandom = getRandomInt(0, 45);
-      if(level == "hard") {
-        textRes += letter[numberRandom];
-      } else {
-        textRes = textRes + letter[numberRandom] + " ";
+      if(letterCheck == "romaji") {
+        if(level == "hard") {
+          textRes += letter[numberRandom];
+        } else {
+          textRes = textRes + letter[numberRandom] + " ";
 
+        }
+        i++;
+        if(i >= numberWords) {
+          break;
+        }
+      } else {
+        if(level == "hard") {
+          textRes += letterHiragana[numberRandom];
+        } else {
+          textRes = textRes + letterHiragana[numberRandom] + " ";
+
+        }
+        i++;
+        if(i >= numberWords) {
+          break;
+        }
       }
-      i++;
-      if(i >= numberWords) {
-        break;
-      }
+
     }
 
     dataRes = {
