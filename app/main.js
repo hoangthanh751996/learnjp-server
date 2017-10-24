@@ -9,7 +9,7 @@ let row2 = ["ka", "ki", "ku", "ke", "ko"];
 let row3 = ["sa", "shi", "su", "se", "so"];
 let row4 = ["ta", "chi", "tsu", "te", "to"];
 let row5 = ["na", "ni", "nu", "ne", "no"];
-let row6 = ["ha", "hi", "hu", "he", "ho"];
+let row6 = ["ha", "hi", "fu", "he", "ho"];
 let row7 = ["ma", "mi", "mu", "me", "mo"];
 let row8 = ["ya", "yu", "yo"];
 let row9 = ["ra", "ri", "ru", "re", "ro"];
@@ -57,7 +57,7 @@ module.exports = (config) => {
 
       }
       i++;
-      if(i > numberWords) {
+      if(i >= numberWords) {
         break;
       }
     }
